@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* General body styling */
+        body {
+            background: url('https://t4.ftcdn.net/jpg/05/30/94/15/360_F_530941532_cRnI3XVospM5knxsBSTE4VOy9LxbbUsf.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styling */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h3 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Navigation styling */
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 5px;
+            text-align: center;
+            position: relative;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Section styling */
+        section {
+            background: rgba(255, 255, 255, 0.9); /* Increased transparency */
+            padding: 40px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        /* Back to Top button styling */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0c0c0c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none; /* Hidden by default */
+        }
+
+        #back-to-top:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h3 style="display: inline;">HANGRY Payment Gateway</h3>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/orders/">Menu</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+    <section>
+        <h1>Payment Details</h1>
+        <p>Please enter your payment details:</p>
+        <form onsubmit="document.getElementById('thank-you').style.display = 'block'; this.style.display = 'none'; return false;">
+            <label>Name on Card:</label>
+            <input type="text" required><br><br>
+
+            <label>Card Number:</label>
+            <input type="text" required><br><br>
+
+            <label>Expiry Date:</label>
+            <input type="text" required><br><br>
+
+            <label>CVV:</label>
+            <input type="text" required><br><br>
+
+            <button type="submit">Submit Payment</button>
+        </form>
+
+        <div id="thank-you" style="display: none; text-align: center; margin-top: 20px;">
+            <h1>Thanks for ordering with HANGRY!</h1>
+            <p>Your food will be delivered shortly. Enjoy your meal!</p>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 HANGRY Restaurant. All rights reserved.</p>
+    </footer>
+</body>
+</html>

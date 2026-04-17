@@ -1,0 +1,207 @@
+body {
+    background: url('https://t4.ftcdn.net/jpg/05/30/94/15/360_F_530941532_cRnI3XVospM5knxsBSTE4VOy9LxbbUsf.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+header h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Navigation styling */
+nav {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+nav a, .dropdown span {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+nav a:hover, .dropdown span:hover {
+    text-decoration: underline;
+}
+
+/* Footer styling */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Dropdown menu styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 120px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 12px 16px;
+    z-index: 5;
+    border-radius: 2px;
+}
+
+.dropdown-content p, .dropdown-content a {
+    margin: 0;
+    padding: 8px 0;
+    color: #333;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.dropdown-content p:hover, .dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px 16px;
+}
+
+/* Section styling */
+section {
+    background: rgba(255, 255, 255, 0.9); /* Increased transparency */
+    padding: 40px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+    font-size: 28px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Food store section styling */
+.foodstore {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+}
+
+.category h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    margin-top: 0;
+    border-bottom: 3px solid #ff6b35;
+    padding-bottom: 10px;
+}
+
+.food-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjust spacing between items */
+    gap: 20px; /* Add gap between rows */
+}
+
+.item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+}
+
+.item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.item h3 {
+    font-size: 20px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.item p {
+    font-size: 16px;
+    color: #666;
+    margin: 10px 0;
+}
+
+.item form button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.item form button:hover {
+    background-color: #555;
+}
+
+/* Back to Top button styling */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none; /* Hidden by default */
+}
+
+#back-to-top:hover {
+    background-color: #555;
+}
