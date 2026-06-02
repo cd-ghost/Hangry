@@ -105,18 +105,19 @@
     <section>
         <h1>Payment Details</h1>
         <p>Please enter your payment details:</p>
-        <form onsubmit="document.getElementById('thank-you').style.display = 'block'; this.style.display = 'none'; return false;">
+        <p id="form-error" style="display: none; color: #cc0000; font-weight: bold;"></p>
+        <form id="payment-form" onsubmit="return handlePaymentSubmit(this);">
             <label>Name on Card:</label>
-            <input type="text" required><br><br>
+            <input type="text" id="card-name" required><br><br>
 
             <label>Card Number:</label>
-            <input type="text" required><br><br>
+            <input type="text" id="card-number" required placeholder="1234 5678 9012 3456" maxlength="19"><br><br>
 
             <label>Expiry Date:</label>
-            <input type="text" required><br><br>
+            <input type="text" id="card-expiry" required placeholder="MM/YY" maxlength="5"><br><br>
 
             <label>CVV:</label>
-            <input type="text" required><br><br>
+            <input type="text" id="card-cvv" required placeholder="123" maxlength="4"><br><br>
 
             <button type="submit">Submit Payment</button>
         </form>
@@ -126,6 +127,74 @@
             <p>Your food will be delivered shortly. Enjoy your meal!</p>
         </div>
     </section>
+    <script>
+        function showFormError(message) {
+            var errorEl = document.getElementById("form-error");
+            if (errorEl) {
+                errorEl.textContent = message;
+                errorEl.style.display = "block";
+            }
+        }
+
+        function clearFormError() {
+            var errorEl = document.getElementById("form-error");
+            if (errorEl) {
+                errorEl.style.display = "none";
+                errorEl.textContent = "";
+            }
+        }
+
+        function handlePaymentSubmit(form) {
+            try {
+                clearFormError();
+
+                var name = document.getElementById("card-name");
+                var number = document.getElementById("card-number");
+                var expiry = document.getElementById("card-expiry");
+                var cvv = document.getElementById("card-cvv");
+
+                if (!name || !number || !expiry || !cvv) {
+                    showFormError("Payment form is not configured correctly. Please refresh and try again.");
+                    return false;
+                }
+
+                var cardDigits = number.value.replace(/\s/g, "");
+                if (!/^\d{13,19}$/.test(cardDigits)) {
+                    showFormError("Please enter a valid card number (13-19 digits).");
+                    number.focus();
+                    return false;
+                }
+
+                if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry.value)) {
+                    showFormError("Please enter a valid expiry date in MM/YY format.");
+                    expiry.focus();
+                    return false;
+                }
+
+                if (!/^\d{3,4}$/.test(cvv.value)) {
+                    showFormError("Please enter a valid CVV (3 or 4 digits).");
+                    cvv.focus();
+                    return false;
+                }
+
+                var thankYou = document.getElementById("thank-you");
+                if (!thankYou) {
+                    showFormError("Something went wrong. Please refresh and try again.");
+                    console.error("Missing #thank-you element");
+                    return false;
+                }
+
+                thankYou.style.display = "block";
+                form.style.display = "none";
+                clearFormError();
+                return false;
+            } catch (err) {
+                console.error("Payment form error:", err);
+                showFormError("An unexpected error occurred. Please try again.");
+                return false;
+            }
+        }
+    </script>
     <footer>
         <p>&copy; 2025 HANGRY Restaurant. All rights reserved.</p>
     </footer>
