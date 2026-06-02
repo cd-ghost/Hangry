@@ -60,7 +60,9 @@
 <section style="background: rgba(255, 255, 255, 0.9); padding: 40px; margin: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
     <h1 style="color: #333; font-size: 32px; margin: 0 0 10px 0;">Our Delicious Menu</h1>
     <p style="color: #666; font-size: 16px; margin: 0;">Choose from our wide variety of cuisines and dishes. Fresh, fast, and affordable!</p>
-    
+    {% if db_error %}
+    <p style="color: #cc0000; font-size: 16px; margin-top: 15px;">Sorry, we are having trouble loading the menu right now. Please try again later.</p>
+    {% endif %}
 </section>
 
 <!-- ========== ITALIAN SECTION ========== -->
@@ -229,6 +231,7 @@
 <script>
     window.onscroll = function() {
         var backToTopButton = document.getElementById("back-to-top");
+        if (!backToTopButton) return;
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             backToTopButton.style.display = "block";
         } else {
@@ -237,175 +240,30 @@
     };
 
     function scrollToTop() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    }
-
-    function addToCart(button) {
-        button.textContent = "Added to Cart!";
-        button.disabled = true;
-        setTimeout(() => {
-            window.location.href = "/payment/";
-        }, 1500);
-    }
-</script>
-</body>
-</html>
-
-<section class="foodstore">
-    <div class="category" id="italian">
-        <h2>Italian</h2>
-        <div class="food-items">
-            <div class="item">
-                <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=300&h=300&fit=crop" alt="Pasta Carbonara">
-                <h3>Pasta Carbonara</h3>
-                <p>Chef Special</p>
-                <p>₹450</p>
-                <form action="/payment/" method="get">
-                    <button type="submit" onclick="addToCart(this)">Add to Cart</button>
-                </form>
-            </div>
-            <div class="item">
-                <img src="https://images.unsplash.com/photo-1565958011504-98d3aecf4837?w=300&h=300&fit=crop" alt="Margherita Pizza">
-                <h3>Margherita Pizza</h3>
-                <p>Vegetarian</p>
-                <p>₹416</p>
-                <form action="/payment/" method="get">
-                    <button type="submit" onclick="addToCart(this)">Add to Cart</button>
-                </form>
-            </div>
-            <div class="item">
-                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561e1d?w=300&h=300&fit=crop" alt="Ravioli">
-                <h3>Ravioli Alfredo</h3>
-                <p>Creamy</p>
-                <p>₹499</p>
-                <form action="paymentgateway.html" method="get">
-                    <button type="submit" onclick="addToCart(this)">Add to Cart</button>
-                </form>
-            </div>
-            <div class="item">
-                <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=300&h=300&fit=crop" alt="Osso Buco">
-                <h3>Osso Buco</h3>
-                <p>Meat Lover</p>
-                <p>₹650</p>
-                <form action="paymentgateway.html" method="get">
-                    <button type="submit" onclick="addToCart(this)">Add to Cart</button>
-                </form>
-            </div>
-            <div class="item">
-                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&h=300&fit=crop" alt="Lasagna">
-                <h3>Lasagna Bolognese</h3>
-                <p>Classic</p>
-                <p>₹399</p>
-                <form action="paymentgateway.html" method="get">
-                    <button type="submit" onclick="addToCart(this)">Add to Cart</button>
-                </form>
-            </div>
-            <div class="item">
-                <img src="https://images.unsplash.com/photo-1645112411341-6c4ee32510b8?w=300&h=300&fit=crop" alt="Risotto">
-                <h3>Mushroom Risotto</h3>
-                <p>Vegetarian</p>
-                <p>₹369</p>
-                <form action="paymentgateway.html" method="get">
-                    <button type="submit" onclick="addToCart(this)">Add to Cart</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="foodstore">
-    <div class="category" id="healthy">
-        <h2>Healthy</h2>
-        <div class="food-items">
-            <div class="item">
-                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&h=300&fit=crop" alt="Grilled Chicken Salad">
-                <h3>Grilled Chicken Salad</h3>
-                <p>Low Cal</p>
-                <p>₹299</p>
-                <form action="paymentgateway.html" method="get">
-                    <button type="submit" onclick="addToCart(this)">Add to Cart</button>
-                </form>
-            </div>
-            <div class="item">
-                <img src="https://images.unsplash.com/photo-1609501676725-7186f017a4b8?w=300&h=300&fit=crop" alt="Buddha Bowl">
-                <h3>Buddha Bowl</h3>
-                <p>Vegan</p>
-                <p>₹349</p>
-                <form action="paymentgateway.html" method="get">
-                    <button type="submit" onclick="addToCart(this)">Add to Cart</button>
-                </form>
-            </div>
-            <div class="item">
-                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&h=300&fit=crop" alt="Quinoa Bowl">
-                <h3>Quinoa Protein Bowl</h3>
-                <p>High Protein</p>
-                <p>₹379</p>
-                <form action="paymentgateway.html" method="get">
-                    <button type="submit" onclick="addToCart(this)">Add to Cart</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-<!-- ========== ABOUT SECTION ========== -->
-<section id="about">
-    <h1>About HANGRY</h1>
-    <p>Welcome to HANGRY, your go-to destination for delicious food at affordable rates. We offer a wide range of cuisines including Italian, Healthy options, Desserts, Kids Menu, and Spicy specialties. Our mission is to provide food lovers with diverse menu options and support local chefs from all backgrounds.</p>
-</section>
-
-<!-- ========== CONTACT SECTION ========== -->
-<section id="contact details">
-    <h1>Contact Us</h1>
-    <p>If you have any questions or concerns, feel free to contact us at:</p>
-    <p>Email: <a href="mailto:hangry@restaurant.com">hangry@restaurant.com</a></p>
-    <p>Phone: 1-800-HANGRY-1</p>
-</section>
-
-<!-- ========== TEAM SECTION ========== -->
-<section id="team">
-    <h1>Our Team</h1>
-    <p>Meet the team behind HANGRY:</p>
-    <ul>
-        <li>Chef Nilesh - Head Chef</li>
-        <li>Sarvesh Raut - Kitchen Manager</li>
-        <li>Aditya Mali - Customer Service</li>
-        <li>Kartik Maurya - Operations Manager</li>
-        <li>Leander Braganza - Web Developer</li>
-    </ul>
-</section>
-
-<button id="back-to-top" onclick="scrollToTop()">Back to Top</button>
-
-<footer>
-    <p>&copy; 2025 HANGRY Restaurant. All rights reserved.</p>
-</footer>
-
-<script>
-    window.onscroll = function() {
-        var backToTopButton = document.getElementById("back-to-top");
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTopButton.style.display = "block";
-        } else {
-            backToTopButton.style.display = "none";
+        try {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        } catch (err) {
+            console.error("scrollToTop failed:", err);
         }
-    };
-
-    function scrollToTop() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
     }
 
     function addToCart(button) {
-        button.textContent = "Added to Cart!";
-        button.disabled = true;
-        setTimeout(() => {
+        if (!button) {
+            console.error("addToCart called without a valid button element");
+            return;
+        }
+        try {
+            button.textContent = "Added to Cart!";
+            button.disabled = true;
+            setTimeout(function() {
+                window.location.href = "/payment/";
+            }, 1500);
+        } catch (err) {
+            console.error("addToCart failed:", err);
             window.location.href = "/payment/";
-        }, 1500);
+        }
     }
 </script>
-</body>
-</html>
 </body>
 </html>
