@@ -105,21 +105,55 @@
     <section>
         <h1>Payment Details</h1>
         <p>Please enter your payment details:</p>
-        <form onsubmit="document.getElementById('thank-you').style.display = 'block'; this.style.display = 'none'; return false;">
+        <form id="payment-form" onsubmit="return handlePayment(this);">
+            {% csrf_token %}
             <label>Name on Card:</label>
-            <input type="text" required><br><br>
+            <input type="text" name="card_name" required autocomplete="cc-name"
+                   pattern="[A-Za-z\s]+" title="Name should only contain letters and spaces"><br><br>
 
             <label>Card Number:</label>
-            <input type="text" required><br><br>
+            <input type="text" name="card_number" required autocomplete="cc-number"
+                   inputmode="numeric" pattern="\d{13,19}" maxlength="19"
+                   title="Enter a valid card number (13-19 digits)"
+                   placeholder="XXXX XXXX XXXX XXXX"><br><br>
 
             <label>Expiry Date:</label>
-            <input type="text" required><br><br>
+            <input type="text" name="card_expiry" required autocomplete="cc-exp"
+                   pattern="(0[1-9]|1[0-2])\/\d{2}" maxlength="5"
+                   title="Enter expiry in MM/YY format" placeholder="MM/YY"><br><br>
 
             <label>CVV:</label>
-            <input type="text" required><br><br>
+            <input type="password" name="card_cvv" required autocomplete="cc-csc"
+                   inputmode="numeric" pattern="\d{3,4}" maxlength="4"
+                   title="Enter 3 or 4 digit CVV"><br><br>
 
+            <p id="payment-error" style="color: red; display: none;"></p>
             <button type="submit">Submit Payment</button>
         </form>
+        <script>
+            function handlePayment(form) {
+                var errorEl = document.getElementById('payment-error');
+                errorEl.style.display = 'none';
+
+                var cardNum = form.card_number.value.replace(/\s/g, '');
+                if (!/^\d{13,19}$/.test(cardNum)) {
+                    errorEl.textContent = 'Please enter a valid card number.';
+                    errorEl.style.display = 'block';
+                    return false;
+                }
+
+                var cvv = form.card_cvv.value;
+                if (!/^\d{3,4}$/.test(cvv)) {
+                    errorEl.textContent = 'Please enter a valid CVV.';
+                    errorEl.style.display = 'block';
+                    return false;
+                }
+
+                document.getElementById('thank-you').style.display = 'block';
+                form.style.display = 'none';
+                return false;
+            }
+        </script>
 
         <div id="thank-you" style="display: none; text-align: center; margin-top: 20px;">
             <h1>Thanks for ordering with HANGRY!</h1>
